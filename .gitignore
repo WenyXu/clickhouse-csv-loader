@@ -1,0 +1,12 @@
+# Vendor
+vendor/
+
+# Build & binary
+dist/
+clickhouse-csv-loader
+
+# Editors
+.idea/
+.vscode/
+
+*.log
