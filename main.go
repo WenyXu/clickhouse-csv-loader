@@ -19,7 +19,7 @@ func main() {
 	// Define command line parameters
 	host := flag.String("host", "127.0.0.1", "ClickHouse host")
 	port := flag.Int("port", 9000, "ClickHouse port")
-	batchSize := flag.Int("batch", 3000, "Batch size")
+	batchSize := flag.Int("batch", 30000, "Batch size")
 	database := flag.String("database", "default", "ClickHouse database")
 	user := flag.String("user", "default", "ClickHouse user")
 	password := flag.String("password", "", "ClickHouse password")
@@ -97,7 +97,7 @@ func main() {
 }
 
 func insertBatch(ctx context.Context, conn driver.Conn, table string, headers []string, records [][]string) error {
-
+	fmt.Printf("Inserting batch of %d records into %s\n", len(records), table)
 	// Build SQL Insert statement
 	columnList := fmt.Sprintf("(%s)", joinHeaders(headers, ","))
 	insertQuery := fmt.Sprintf("INSERT INTO %s %s VALUES", table, columnList)
